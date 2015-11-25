@@ -22,6 +22,7 @@ public class InferenceEngine {
         System.out.println(r.toString());
         System.out.println("");
         
+        /*
         Rule r1 = new Rule(1);
         Tuple t1 = new Tuple();
         Tuple t2 = new Tuple();
@@ -51,6 +52,7 @@ public class InferenceEngine {
         r1.applyOn(wm);
         
         System.out.println(wm);
+                */
         
     }
     

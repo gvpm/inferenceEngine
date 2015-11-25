@@ -53,7 +53,7 @@ public class Loader {
                 String line = b.readLine();
                 if (line == null) {
                     eof = true;
-                } else if (line.startsWith("GOAL")) {
+                } else if (line.startsWith("GOAL")) {//Load goals from file
                     String[] sv = line.split(":");
                     if(sv[1].contains(",")){
                         String[] filteredGoals = sv[1].split(",");
@@ -69,7 +69,24 @@ public class Loader {
                     goal.loadFromString(sv[1]);
                     goals.add(goal);
                     }
-                } 
+                } else if (line.startsWith("WM")) {//Load WM from file
+                    String[] sv = line.split(":");
+                    if(sv[1].contains(",")){
+                        String[] filteredWm = sv[1].split(",");
+                        for (int i = 0; i < filteredWm.length; i++) {
+                            Tuple filteredWmTuple = new Tuple();
+                            filteredWmTuple.loadFromString(filteredWm[i]);
+                            wm.addTuple(filteredWmTuple);                            
+                            
+                        }                            
+            
+                    }else{
+                    Tuple wmTuple = new Tuple();
+                    wmTuple.loadFromString(sv[1]);
+                    wm.addTuple(wmTuple);
+                            
+                    }
+                } //Start add Rules Here with an else if
 
             }
             b.close();

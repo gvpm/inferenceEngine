@@ -1,5 +1,5 @@
 GOAL:(a b),(b c),(g v)
-WM:(a c),(e)
+WM:(a c),(e),(g h a d e r t),(h),(g),(f),(d)
 RULE:(a g),(e)-(a b)-(a c),(e)
 RULE:(a c),(e)-(a b)-(a c),(e)
 
