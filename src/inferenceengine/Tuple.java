@@ -21,9 +21,42 @@ public class Tuple {
         elements = new ArrayList<>();
     }
     
+    public Tuple(String s) {
+        elements = new ArrayList<>();
+    }
+    
     public void addElement(String e){
         elements.add(e);
     }
+    
+    public void loadFromString(String s){
+        //s= s.replaceAll("(", "");
+        //s= s.replaceAll(")", "");
+        //System.out.println(s);
+        //System.out.println(s);
+        String opened;
+        opened = s.replace("(", "");
+        opened = opened.replace(")", "");
+        //System.out.println(opened);
+        
+        if(opened.contains(" ")){
+             String[] sv = opened.split(" ");
+             for (int i = 0; i < sv.length; i++) {
+                 this.addElement(sv[i]);                
+                 //System.out.println(sv[i]);
+            }
+            
+        }else{
+            this.addElement(opened);
+        }
+        
+        
+        
+    }
+    
+    
+   
+    
     
     public boolean compareTuple(Tuple t){
         boolean r = true;

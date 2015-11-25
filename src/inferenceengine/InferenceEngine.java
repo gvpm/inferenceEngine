@@ -1,6 +1,8 @@
 
 package inferenceengine;
 
+import java.io.IOException;
+
 /**
  *
  * @author gvpm
@@ -10,8 +12,15 @@ public class InferenceEngine {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
+        
+        Running r = new Running();
+        Loader l = new Loader (r);
+        l.Run();
+        
+        System.out.println(r.toString());
+        System.out.println("");
         
         Rule r1 = new Rule(1);
         Tuple t1 = new Tuple();
