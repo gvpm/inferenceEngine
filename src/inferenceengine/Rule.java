@@ -30,6 +30,7 @@ public class Rule {
         
         for (int i = 0; i < getIfTuplesSize(); i++) {
             if(wm.searchTuple(getIfTuple(i))==-1)
+                //System.out.println("");
                 return false;            
         }
         
@@ -37,6 +38,10 @@ public class Rule {
     }
     
     public void applyOn(WorkingMemory wm){
+        
+        if(this.isApplicableOn(wm)){
+        System.out.println(this.toString());
+        
         for (int i = 0; i < this.getDeleteTuplesSize(); i++) {
             int toRemove = wm.searchTuple(this.getDeleteTuple(i));
             if(toRemove!=-1){
@@ -51,7 +56,9 @@ public class Rule {
            }
             
         }
-               
+        }else{
+            System.out.println("RULE"+ruleNumber+ " Failed");
+        }      
     }
     
     public void addIfTuple(Tuple t){
@@ -92,7 +99,7 @@ public class Rule {
     
     @Override
     public String toString() {
-        return "RULE"+ruleNumber+": \n"+ "IF: " + ifTuples + "\nTHEN: \n" + 
+        return "\nRULE"+ruleNumber+": \n"+ "IF: " + ifTuples + "\nTHEN: \n" + 
                 "Add: " + addTuples+ "\nDelete: " +deleteTuples;
     }
     
