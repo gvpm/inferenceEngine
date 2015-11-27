@@ -1,0 +1,30 @@
+GOAL:(C)
+WM:(H),(B),(X),(Z),(D)
+RULE:(Y),(Z),(H)-(A)-x
+RULE:(A),(B)-(C)-x
+RULE:(D)-(Y)-x
+
+
+Example: Develop the backward chain for proving the goal ( C ) in a rule-based system using the following facts and rules in the given order:
+	(FACT 1 ( H ))
+	(FACT 2 ( B ))
+	(FACT 3 ( X ))
+	(FACT 4 ( Z ))
+	(FACT 5 ( D ))
+	(RULE 1 (IF (( Y ) and ( Z ) and ( H )) (THEN ( A ))))
+	(RULE 2 (IF (( A ) and ( B )) (THEN ( C ))))
+	(RULE 3 (IF (( D )) (THEN ( Y ))))
+
+Solution:
+     step 1: to prove ( C )
+             select RULE 2: new subgoals ( A ), ( B )
+     step 2: to prove ( A )
+             select RULE 1: new subgoals ( Y ), ( Z ), ( H )
+     step 3: to prove ( Y )
+             select RULE 3: new subgoal ( D ),  but D is FACT 5, hence RULE 3 fires
+     step 4: to prove ( Z )
+             but Z is FACT 4
+     step 5: to prove ( H )
+             but H is FACT 1, hence RULE 1 fires
+     step 6: to prove ( B )
+             but B is FACT 2, hence RULE 2 fires,  Therefore the goal ( C ) is PROVEN !

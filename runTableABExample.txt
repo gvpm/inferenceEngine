@@ -1,0 +1,8 @@
+GOAL:(b a)
+WM:(a b),(b t),(s a),(s t)
+RULE:(s a),(s b),(a t)-(a b)-(a t),(s b)
+RULE:(s a),(s t),(a b)-(a t),(s b)-(a b)
+RULE:(s b),(s a),(b t)-(b a)-(b t),(s a)
+RULE:(s b),(s t),(b a)-(b t),(s a)-(b a)
+
+

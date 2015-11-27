@@ -37,10 +37,23 @@ public class Rule {
         return true;        
     }
     
+    public boolean providesGoal(Tuple g){
+        
+        for (int i = 0; i < addTuples.size(); i++) {
+            if(this.getAddTuple(i).compareTuple(g)){
+                return true;
+            }
+            
+        }
+        
+        return false;
+    }
+    
     public void applyOn(WorkingMemory wm){
         
         if(this.isApplicableOn(wm)){
         System.out.println(this.toString());
+        
         
         for (int i = 0; i < this.getDeleteTuplesSize(); i++) {
             int toRemove = wm.searchTuple(this.getDeleteTuple(i));
@@ -56,6 +69,7 @@ public class Rule {
            }
             
         }
+        System.out.println(wm.toString());
         }else{
             System.out.println("RULE"+ruleNumber+ " Failed");
         }      

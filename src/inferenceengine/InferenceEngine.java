@@ -19,12 +19,16 @@ public class InferenceEngine {
         Running r = new Running();
         Loader l = new Loader (r);
         l.Run();
+        System.out.println("Goals: "+r.goals);
+        System.out.println(r.wm.toString());
+        r.firstBack();
        
         System.out.println(r.wm.toString());
         System.out.println("");
         //System.out.println(r.toString());
         //System.out.println("");
         
+        /*
         r.rules.get(0).applyOn(r.wm);
         System.out.println(r.wm.toString());
         System.out.println(r.checkGoal());
@@ -57,7 +61,7 @@ public class InferenceEngine {
         
         
         
-        
+       */ 
         
     }
     
