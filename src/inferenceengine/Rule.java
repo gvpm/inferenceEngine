@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inferenceengine;
 
 import java.util.ArrayList;
@@ -37,6 +33,7 @@ public class Rule {
         return true;        
     }
     
+    //Check if the rule can provide the goal
     public boolean providesGoal(Tuple g){
         
         for (int i = 0; i < addTuples.size(); i++) {
@@ -69,7 +66,7 @@ public class Rule {
            }
             
         }
-        System.out.println(wm.toString());
+        System.out.println("Updated "+wm.toString());
         }else{
             System.out.println("RULE"+ruleNumber+ " Failed");
         }      
@@ -113,8 +110,8 @@ public class Rule {
     
     @Override
     public String toString() {
-        return "\nRULE"+ruleNumber+": \n"+ "IF: " + ifTuples + "\nTHEN: \n" + 
-                "Add: " + addTuples+ "\nDelete: " +deleteTuples;
+        return "RULE"+ruleNumber+": \n"+ "IF: " + ifTuples + "\nTHEN: " + 
+                "Add: " + addTuples+ " Delete: " +deleteTuples;
     }
     
     

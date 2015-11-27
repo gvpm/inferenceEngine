@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inferenceengine;
 
 import java.util.ArrayList;
@@ -34,7 +30,7 @@ public class Loader {
 
     }
 
-    public void Run() throws IOException {
+    public void run() throws IOException {
 
         FileReader f;
         try {
@@ -143,7 +139,7 @@ public class Loader {
             
 
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Arquivo 'config.txt' não encontrado.");
+            JOptionPane.showMessageDialog(null, "File'rule.txt' not found.");
 
         }
 

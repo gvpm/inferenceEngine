@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inferenceengine;
 
 import java.util.ArrayList;
@@ -49,19 +44,21 @@ public class Running {
         return r;
     }
 
-    public void firstBack() {
+    public void run() {
+        System.out.println("START: ");
         if (checkFinalGoal()) {
-            System.out.println("GOAL IN THE WM");
+            System.out.println("\nGOAL IN THE WM");
         } else {
             int r = 1;
             for (int i = 0; i < this.goals.size(); i++) {
                 r = r * back(this.goals.get(i));
-
             }
             if (r == 1) {
-                System.out.println("GOAL INFERED");
+                System.out.println("\nGOAL INFERED");
+                System.out.println("Goal: "+this.goals);
+                System.out.println("Final "+this.wm);
             } else {
-                System.out.println("GOAL UNREACHEBLE");
+                System.out.println("\nGOAL UNREACHEBLE");
             }
 
         }
@@ -85,11 +82,12 @@ public class Running {
 
                 }//case when all the subgoals where met, nothing was 0
                 if (r == 1) {
+                    System.out.print("\nFIRED ");
                     providingRules.get(j).applyOn(wm);
                     return 1;
                 }
-                //set  r to 1 againfor next rule to be checked
-                r=1;
+                //set  r to 1 again for next rule to be checked
+                r = 1;
             }
             //case when all the possible rules could not find the goal in the end
             return 0;
@@ -113,8 +111,18 @@ public class Running {
 
     @Override
     public String toString() {
-        return "Running{" + "goals=" + goals + ", wm=" + wm + ", rules=" + rules + '}';
+        String r = "---------------------------------------------------------";
+       r = r.concat("\nGoal: " + goals + "\n" + wm);
+        r = r.concat("\n\nRules: \n");
+        for (int i = 0; i < rules.size(); i++) {
+            r = r.concat("\n"+rules.get(i).toString()+"\n");
+            
+        }
+        r = r.concat("---------------------------------------------------------");
+        return r;
     }
+
+    //Rules that can provide the goal
 
     private ArrayList<Rule> providingRules(Tuple subGoal) {
         ArrayList<Rule> r = new ArrayList<>();

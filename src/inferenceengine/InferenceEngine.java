@@ -14,54 +14,22 @@ public class InferenceEngine {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
         
+        
+        //Creates the main structure
         Running r = new Running();
+        //Loads the .txt file into the main structure
         Loader l = new Loader (r);
-        l.Run();
-        System.out.println("Goals: "+r.goals);
-        System.out.println(r.wm.toString());
-        r.firstBack();
+        //Runs the loader
+        l.run();
+        //System.out.println("Goal: "+r.goals);
+        //System.out.println(r.wm.toString());
+        System.out.println(r);
+        
+        r.run();
        
-        System.out.println(r.wm.toString());
-        System.out.println("");
-        //System.out.println(r.toString());
-        //System.out.println("");
+       
         
-        /*
-        r.rules.get(0).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        
-        r.rules.get(5).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        r.rules.get(2).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        r.rules.get(4).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        r.rules.get(1).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        r.rules.get(3).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        r.rules.get(0).applyOn(r.wm);
-        System.out.println(r.wm.toString());
-        System.out.println(r.checkGoal());
-        
-        
-        
-        
-       */ 
         
     }
     
