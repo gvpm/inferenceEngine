@@ -112,7 +112,8 @@ public class Running {
     @Override
     public String toString() {
         String r = "---------------------------------------------------------";
-       r = r.concat("\nGoal: " + goals + "\n" + wm);
+        r = r.concat("\nLOADED CONFIGURATION\n");
+        r = r.concat("\nGoal: " + goals + "\n" + wm);
         r = r.concat("\n\nRules: \n");
         for (int i = 0; i < rules.size(); i++) {
             r = r.concat("\n"+rules.get(i).toString()+"\n");
