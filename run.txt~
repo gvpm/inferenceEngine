@@ -1,8 +1,8 @@
-GOAL:(b g),(a)
-WM:(f h),(d j),(u v),(r t)
+GOAL:(b g)
+WM:(f h),(d j z),(u v),(r t)
 RULE:(f h),(a c)-(b g)-x
 RULE:(n s)-(e m)-x
 RULE:(r t)-(p q)-x
 RULE:(d j),(e m),(k i)-(a c)-x
 RULE:(p q)-(n s)-x
-RULE:(u v)-(k i),(a)-x
+RULE:(u v)-(k i)-x

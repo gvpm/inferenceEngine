@@ -93,10 +93,12 @@ public class Running {
                 r = 1;
             }
             //case when all the possible rules could not find the goal in the end
+            System.out.println("Can't reach "+subGoal);
             return 0;
 
         }
         //case where no rules could provide goal
+        System.out.println("No rules can provide "+subGoal);
         return 0;
     }
 
