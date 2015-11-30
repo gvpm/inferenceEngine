@@ -21,6 +21,11 @@ public class Rule {
         this.ruleNumber=n;
         
     }
+
+    public int getRuleNumber() {
+        return ruleNumber;
+    }
+    
     
     public boolean isApplicableOn(WorkingMemory wm){
         
@@ -66,7 +71,7 @@ public class Rule {
            }
             
         }
-        System.out.println("Updated "+wm.toString());
+        System.out.println("Updated "+wm.toString()+"\n");
         }else{
             System.out.println("RULE"+ruleNumber+ " Failed");
         }      

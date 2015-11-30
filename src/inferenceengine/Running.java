@@ -69,6 +69,7 @@ public class Running {
         ArrayList<Rule> providingRules = providingRules(subGoal);
         //case when goal is in the wm
         if (checkGoal(subGoal)) {
+            System.out.println("Subgoal "+subGoal+" already in the WM");
             return 1;
         }
         //case when there is at least one rule  that provides the goal
@@ -76,8 +77,10 @@ public class Running {
             int r = 1;
             //will check all the rules that can provide the goal in order
             for (int j = 0; j < providingRules.size(); j++) {
+                System.out.println("\nTry to apply RULE"+providingRules.get(j).getRuleNumber()+" to prove "+subGoal);
                 //r is the accumulative return of the recursive call to all new subgoals
                 for (int i = 0; i < providingRules.get(j).ifTuples.size(); i++) {
+                    System.out.println("New Sobgoal:" +providingRules.get(j).getIfTuple(i)+" to satisfy RULE"+providingRules.get(j).getRuleNumber());
                     r = r * back(providingRules.get(j).getIfTuple(i));
 
                 }//case when all the subgoals where met, nothing was 0
