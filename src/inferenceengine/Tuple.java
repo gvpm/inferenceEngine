@@ -4,42 +4,48 @@ package inferenceengine;
 import java.util.ArrayList;
 
 /**
- *
+ * Structure that represents a Tuple
+ * Contains a list of strings that are the tuple elements
  * @author gvpm
  */
 public class Tuple {
     
     ArrayList<String> elements; 
     
-   
-
+    /**
+     * Constructor
+     */
     public Tuple() {
         elements = new ArrayList<>();
     }
     
-    public Tuple(String s) {
-        elements = new ArrayList<>();
-    }
+
     
+    /**
+     * Adds an element to the tuple
+     * @param e String to add
+     */
     public void addElement(String e){
         elements.add(e);
     }
     
+    /**
+     * Loads a tuple from a String from txt template
+     * Example (a b) will will create a tuple with strings "a" and "b"
+     * @param  s String to transform in 
+     */
     public void loadFromString(String s){
-        //s= s.replaceAll("(", "");
-        //s= s.replaceAll(")", "");
-        //System.out.println(s);
-        //System.out.println(s);
+      
         String opened;
         opened = s.replace("(", "");
         opened = opened.replace(")", "");
-        //System.out.println(opened);
+      
         
         if(opened.contains(" ")){
              String[] sv = opened.split(" ");
              for (int i = 0; i < sv.length; i++) {
                  this.addElement(sv[i]);                
-                 //System.out.println(sv[i]);
+                
             }
             
         }else{
@@ -50,10 +56,11 @@ public class Tuple {
         
     }
     
-    
-   
-    
-    
+    /**
+     * Compares one tuple to another
+     * @param t tuple to compare 
+     * @return true= if the tuples are equal false= if tuples are not equal
+     */
     public boolean compareTuple(Tuple t){
         boolean r = true;
         int comparison = 0;
@@ -74,16 +81,30 @@ public class Tuple {
         return r;
     }
     
+    /**
+     * Returns an element from the tuple
+     * @param i index for the element
+     * @return the element
+     */
     public String getElement(int i){
         
         return this.elements.get(i);
     }
     
+    /**
+     * Removes one element from tuple
+     * @param i index of the element
+     * @return the element removed
+     */
     public String removeElement(int i){
         return this.elements.remove(i);
         
     }    
     
+    /**
+     * Return the amount of elements in the tuple
+     * @return the number of elements
+     */
     public int getSize(){
         
         return this.elements.size();

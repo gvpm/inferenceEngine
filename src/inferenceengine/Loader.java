@@ -10,7 +10,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Class loader
+ * Loads a .txt file into the main structure
  * @author gvpm
  */
 public class Loader {
@@ -21,6 +22,10 @@ public class Loader {
     ArrayList<Rule> rules;
     int ruleCount;
 
+    /**
+     * Constructor
+     * @param r Structure to load into
+     */
     public Loader(Running r) {
         this.r = r;
         this.goals = new ArrayList<>();
@@ -30,21 +35,26 @@ public class Loader {
 
     }
 
+    /**
+     * Runs the loader
+     * @throws IOException
+     */
     public void run() throws IOException {
 
         FileReader f;
         try {
+            //File to read from
             f = new FileReader("run.txt");
             BufferedReader b;
             b = new BufferedReader(f);
             boolean eof = false;
 
             while (!eof) {
-
+                //Reads the next line
                 String line = b.readLine();
-                if (line == null) {
+                if (line == null) {//Case where line is empty, end of file
                     eof = true;
-                } else if (line.startsWith("GOAL")) {//Load goals from file
+                } else if (line.startsWith("GOAL")) {//Case when line is the Goal, Load goals from file
                     String[] sv = line.split(":");
                     if (sv[1].contains(",")) {
                         String[] filteredGoals = sv[1].split(",");
@@ -60,7 +70,7 @@ public class Loader {
                         goal.loadFromString(sv[1]);
                         goals.add(goal);
                     }
-                } else if (line.startsWith("WM")) {//Load WM from file
+                } else if (line.startsWith("WM")) {// Case when line is WM, Load WM from file
                     String[] sv = line.split(":");
                     if (sv[1].contains(",")) {
                         String[] filteredWm = sv[1].split(",");
@@ -77,21 +87,20 @@ public class Loader {
                         wm.addTuple(wmTuple);
 
                     }
-                } else if (line.startsWith("RULE")) {//Load RULE from file
+                } else if (line.startsWith("RULE")) {//case when line is a rule, Load RULE from file
                     
                     
                     String[] sv = line.split(":");
                     String[] parts = sv[1].split("-");
-                    //int i =2;
+                    
                     Rule r = new Rule(ruleCount);
                     ruleCount++;
                     
                     //for to read the tuples from IF ADD and DELETE
-                    for (int i = 0; i < parts.length; i++) {
-                        //System.out.println(parts.length);                        
+                    for (int i = 0; i < parts.length; i++) {                                               
                         
                         
-                        if (parts[i].contains(",")) {
+                        if (parts[i].contains(",")) {//Case when its more than one tuple
                             
                             String[] filteredRulePart = parts[i].split(",");
                             for (String tuple : filteredRulePart) {
@@ -109,7 +118,7 @@ public class Loader {
 
                             }
 
-                        } else if (parts[i].compareTo("x") != 0) {
+                        } else if (parts[i].compareTo("x") != 0) {//Case when its only one tuple
                             
                             Tuple ruleTuple = new Tuple();
                             ruleTuple.loadFromString(parts[i]);
@@ -132,6 +141,7 @@ public class Loader {
                 }
 
             }
+            //After all is loaded from file, loads in the structure
             b.close();
             r.setGoal(goals);
             r.setWm(wm);

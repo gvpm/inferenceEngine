@@ -3,7 +3,9 @@ package inferenceengine;
 import java.util.ArrayList;
 
 /**
- *
+ * Class Running
+ * Main structures are inside
+ * Where the algorithm lives and runs
  * @author gvpm
  */
 public class Running {
@@ -12,16 +14,29 @@ public class Running {
     WorkingMemory wm;
     ArrayList<Rule> rules;
 
+    /**
+     * Constructor
+     */
     public Running() {
 
     }
 
+    /**
+     * Constructor
+     * @param goals Goals   
+     * @param wm Working memory
+     * @param rules Rules
+     */
     public Running(ArrayList<Tuple> goals, WorkingMemory wm, ArrayList<Rule> rules) {
         this.goals = goals;
         this.wm = wm;
         this.rules = rules;
     }
 
+    /**
+     * Check if all the main goals were achieved
+     * @return true = achieved, false= not achieved
+     */
     public boolean checkFinalGoal() {
         boolean r = true;
 
@@ -34,6 +49,11 @@ public class Running {
         return r;
     }
 
+    /**
+     * Check if one single goal is in the WM
+     * @param g goal to be checked
+     * @return true = goal in the WM false= goal not in the WM
+     */
     public boolean checkGoal(Tuple g) {
         boolean r = true;
 
@@ -44,20 +64,23 @@ public class Running {
         return r;
     }
 
-    public void run() {
+    /**
+     * Runs the inference algorithm
+     */
+    public void run() {//Begining of the algorithm
         System.out.println("START: ");
         if (checkFinalGoal()) {
             System.out.println("\nGOAL IN THE WM");
         } else {
             int r = 1;
-            for (int i = 0; i < this.goals.size(); i++) {
-                r = r * back(this.goals.get(i));
+            for (Tuple goal : this.goals) {//Calls the backtracking function for each goal
+                r = r * back(goal);//Accumulative result for the results of all the goals
             }
-            if (r == 1) {
+            if (r == 1) {//case when all the goals were achieved
                 System.out.println("\nGOAL INFERED");
                 System.out.println("Goal: "+this.goals);
                 System.out.println("Final "+this.wm);
-            } else {
+            } else {//case when one or more goals returned 0, could not be achieved
                 System.out.println("\nGOAL UNREACHEBLE");
             }
 
@@ -65,6 +88,11 @@ public class Running {
 
     }
 
+    /**
+     * Recursive function, where the backtrack lives.
+     * @param subGoal goal to be proven
+     * @return 1 = subgoal could be proven, 0 = rule could not be proven
+     */
     public int back(Tuple subGoal) {
         ArrayList<Rule> providingRules = providingRules(subGoal);
         //case when goal is in the wm
@@ -102,18 +130,47 @@ public class Running {
         return 0;
     }
 
+    /**
+     * Sets the goal list
+     * @param goals list of goals
+     */
     public void setGoal(ArrayList<Tuple> goals) {
         this.goals = goals;
     }
 
+    /**
+     *  Sets the Working memory
+     * @param wm list of tuples in the WM
+     */
     public void setWm(WorkingMemory wm) {
         this.wm = wm;
     }
 
+    /**
+     * Sets the rules list  
+     * @param rules list of rules
+     */
     public void setRules(ArrayList<Rule> rules) {
         this.rules = rules;
     }
 
+    /**
+     * Search for rules that can provide the given subgoal
+     * @param subGoal goal to achieve
+     * @return list of rules that can provide the given goal
+     */
+    public ArrayList<Rule> providingRules(Tuple subGoal) {
+        ArrayList<Rule> r = new ArrayList<>();
+        for (int i = 0; i < rules.size(); i++) {
+            if (rules.get(i).providesGoal(subGoal)) {
+                r.add(rules.get(i));
+            }
+
+        }
+
+        return r;
+    }
+    
     @Override
     public String toString() {
         String r = "---------------------------------------------------------";
@@ -128,18 +185,8 @@ public class Running {
         return r;
     }
 
-    //Rules that can provide the goal
+   
 
-    private ArrayList<Rule> providingRules(Tuple subGoal) {
-        ArrayList<Rule> r = new ArrayList<>();
-        for (int i = 0; i < rules.size(); i++) {
-            if (rules.get(i).providesGoal(subGoal)) {
-                r.add(rules.get(i));
-            }
-
-        }
-
-        return r;
-    }
+ 
 
 }
